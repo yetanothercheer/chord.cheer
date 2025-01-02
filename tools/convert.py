@@ -50,8 +50,8 @@ def replace_characters_with_ruby_in_body(text, char_map):
     return re.sub(r"(<body[^>]*>)(.*?)(</body>)", replace_in_body, text, flags=re.DOTALL)
 # Specify the file paths
 file_path = 'tools/data.json'  # Replace with your JSON file path
-input_text_file = 'source/index.html'  # Replace with your text file path
-output_text_file = 'index.html'  # Output file path
+input_text_file = 'source/风继续吹.html'  # Replace with your text file path
+output_text_file = '风继续吹.html'  # Output file path
 
 # Read the JSON data
 json_data = read_json_file(file_path)

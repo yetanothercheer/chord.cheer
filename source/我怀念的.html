@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我怀念的</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <style>
+            ruby {
+                font-size: 1rem;
+            }
+            
+            rt {
+                font-size: 0.3rem;
+            }
+        </style>
+</head>
+<script>
+    (function () {
+        const applyTheme = () => {
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            document.documentElement.setAttribute("data-bs-theme", prefersDark ? "dark" : "light");
+        };
+        applyTheme();
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyTheme);
+    })();
+</script>
+
+<body class="fluid-container py-5">
+    <!-- <ruby>TODO: https://www.feitsui.com/zh-hans/lyrics/69 <rt> han1 </rt></ruby> -->
+    <div class="d-flex justify-content-center">
+        <div id="chord" class="mx-auto" style="white-space: pre-wrap; overflow: hidden; font-family: monospace">
+| E          | G#m    | E          | G#m     | 
+我問為什麼 那女孩傳簡訊給我 而你為什麼 不解釋低著頭沉默
+| A          | C#m      | F#m      | Am   B  |
+我該相信你很愛我 不願意敷衍我 還是明白你已不想挽回什麼
+
+| E          | G#m    | E          | G#m     | 
+想問為什麼 我不再是你的快樂 可是為什麼 卻苦笑說我都懂了
+| A          | C#m      | F#m      | A   B  |
+自尊常常將人拖著 把愛都走曲折 假裝了解是怕 真相太赤裸裸 狼狽比失去難受
+
+| E             | G#m/E      |
+我懷念的是無話不說 我懷念的是一起作夢
+| E7/D             | C#      |
+我懷念的是爭吵以後 還是想要愛你的衝動
+| F#m      | Am         | G#m        C#m    | F#m    B |
+我記得那年生日 也記得那一首歌 記得那片星空 最緊的右手 最暖的胸口
+
+1.
+   | E   | G#m/E | F#m | Am   
+誰記得 誰忘了
+
+2.
+   | E               | G#m/E         |
+誰忘了 我懷念的是無言感動 我懷念的是絕對熾熱
+| E7/D         | C#            |
+我懷念的是你很激動 求我原諒抱得我都痛
+| F#m        | Am        |
+我記得你在背後 也記得我顫抖著
+| G#m       C#m      | F#m   B |
+記得感覺洶湧 最美的煙火 最長的相擁
+
+   | E          | G#m/E     | F#m      | A    |
+誰愛得太自由 誰過頭太遠了 誰要走我的心 誰忘了那就是承諾
+   | E          | G#m/E     | F#m      | B    |
+誰自顧自地走 誰忘了看著我 誰讓愛變沉重 誰忘了要給你溫柔
+
+(E -> F)
+| C | F | Am/F | F7/Eb |
+| D               |
+我還有想要愛你的衝動
+| Bb        | Bbm/Db     | Am        Dm    | Gm      C  |
+我記得那年生日 也記得那一首歌 記得那片星空 最緊的右手  最暖的胸口
+  | F    | Am/F  | Gm  | C      |
+我放手 我讓座 假灑脫 誰懂我多麼不捨得
+  | F    | Am/F  | Gm  | Bbm | F
+太愛了 所以我 沒有哭 沒有說
+</pre>
+        </div>
+
+        <script>
+            // Function to check if a string contains only ASCII characters
+            function isAsciiOnly(str) {
+                return /^[\x00-\x7F]*$/.test(str);
+            }
+
+            // Function to check if a string is surrounded by [ and ]
+            function isSurroundedByBrackets(str) {
+                return /^\[.*\]$/.test(str);
+            }
+
+            // Function to highlight ASCII-only lines and bracketed lines in a <pre> element
+            function highlightAsciiLines(preElement, asciiClass = "highlight-ascii", bracketClass = "highlight-bracket") {
+                if (!preElement || preElement.tagName !== "DIV") {
+                    console.error("The provided element is not a <pre> element.");
+                    return;
+                }
+
+                // Split content into lines
+                const lines = preElement.innerHTML.split("\n");
+
+                // Clear the current content
+                preElement.innerHTML = "";
+
+                // Process each line
+                lines.forEach(line => {
+                    const lineElement = document.createElement("div");
+                    lineElement.innerHTML = line;
+
+                    // Check if the line contains only ASCII characters
+                    if (isAsciiOnly(line)) {
+                        lineElement.classList.add(asciiClass);
+                    }
+
+                    // Check if the line is surrounded by [ and ]
+                    if (isSurroundedByBrackets(line)) {
+                        lineElement.classList.add(bracketClass);
+                    }
+
+                    preElement.appendChild(lineElement);
+                });
+            }
+
+            // Usage example
+            const preElement = document.querySelector("#chord");
+            highlightAsciiLines(preElement);
+
+            // Add styles for the highlight classes
+            document.head.insertAdjacentHTML("beforeend", `
+<style>
+  [data-bs-theme="dark"] .highlight-ascii {
+      color: #ffffa8;
+  }
+  [data-bs-theme="dark"] .highlight-bracket {
+      color: #00afff;
+  }
+
+[data-bs-theme="light"] .highlight-ascii {
+    color: #004080; /* Dark blue for visibility on light backgrounds */
+}
+
+[data-bs-theme="light"] .highlight-bracket {
+    color: #800000; /* Deep red to stand out on light themes */
+}
+
+</style>
+`);
+        </script>
+</body>
+
+</html>
