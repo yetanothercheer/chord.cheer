@@ -1,4 +1,14 @@
 import json, re
+import sys, os
+
+if len(sys.argv) != 3:
+    print(f"Usage: {__file__} <input_file> <output_file>")
+    sys.exit(1)
+
+file_path = os.path.join(os.path.dirname(__file__), 'data.json')
+input_text_file = sys.argv[1]
+output_text_file = sys.argv[2]
+
 
 # Function to create the character-to-pronunciation map
 def create_char_pronunciation_map(data):
@@ -48,10 +58,7 @@ def replace_characters_with_ruby_in_body(text, char_map):
         return f"{body_tag_open}{''.join(replaced_content)}</body>"
 
     return re.sub(r"(<body[^>]*>)(.*?)(</body>)", replace_in_body, text, flags=re.DOTALL)
-# Specify the file paths
-file_path = 'tools/data.json'  # Replace with your JSON file path
-input_text_file = 'source/风继续吹.html'  # Replace with your text file path
-output_text_file = '风继续吹.html'  # Output file path
+
 
 # Read the JSON data
 json_data = read_json_file(file_path)
